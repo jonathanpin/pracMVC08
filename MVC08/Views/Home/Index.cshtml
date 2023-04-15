@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    IEnumerable<string> strList = new List<string> { "DAW","POO", "TW", "MAT3", "FIS1" };
+}
+
+
+<div class="container body-content">
+    <form>
+        <div class="form-group">
+            @Html.Label("Nombre Usuario")
+            @Html.TextBox("txtUserName", "", new {@class="form-control"})
+        </div>
+        <div class="form-group">
+            @Html.Label("Password")
+            @Html.TextBox("txtPassword", "", new {@class="form-control",type="password"})
+        </div>
+        <div class="form-group">
+            @Html.Label("Genero")
+            @Html.RadioButton("Genero", "Masculino", true, new{id="masculino"})
+            Masculino
+            @Html.RadioButton("Genero", "Femenino", false, new{id="femenino"})
+            Femenino
+        </div>
+        <div class="form-group">
+            @Html.Label("Direccion")
+            @Html.TextArea("direccion", "Ingrese su direccion",
+            new{@class="form-control", id= "idDireccion"})
+        </div>
+        @Html.Label("Pasatiempos")
+        <div class="form-check form-check-inline">
+            @Html.CheckBox("Bailar",false,new {@class="form-check-input"})
+            @Html.Label("Bailar",null,new {@class="form-check-label"})
+        </div>
+        <div class="form-check form-check-inline">
+            @Html.CheckBox("Correr",false,new {@class="form-check-input"})
+            @Html.Label("Correr",null,new {@class="form-check-label"})
+        </div>
+        <div class="form-check form-check-inline">
+            @Html.CheckBox("Escalar",false,new {@class="form-check-input"})
+            @Html.Label("Escalar",null,new {@class="form-check-label"})
+        </div>
+        <div class="form-check form-check-inline">
+            @Html.CheckBox("Peliculas",false,new {@class="form-check-input"})
+            @Html.Label("Peliculas",null,new {@class="form-check-label"})
+        </div>
+        <div class="form-group">
+            @Html.Label("Cursos")
+            @Html.DropDownList("ddlCurso", new SelectList(strList,
+            strList.FirstOrDefault()), "--Seleccionar curso ----",new {@class="form-control"})
+        </div>
+        <div class="form-group">
+            @Html.Label("Conocimiento")
+            @Html.ListBox("Seleccionar habilidades", new List<SelectListItem>{
+            new SelectListItem {Text = "C #", Value = "1"},
+            new SelectListItem {Text = "ASP.NET", Value = "2"},
+            new SelectListItem {Text = "ASP.NET Core", Value = "3"},
+            new SelectListItem {Text = "Azure", Value = "4"}
+            },new {@class="form-control"})
+        </div>
+        <br />
+        @Html.ActionLink("Enviar Datos", "home", "guardarUsuario",null,new {@class="btn btn-success"})
+        @using (Html.BeginForm("index", "inicio", FormMethod.Post))
+        {
+            // Código aquí ...
+        }
+    </form>
+</div>
